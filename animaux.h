@@ -24,7 +24,6 @@ class Attaque{
         //Getters
         attaque_e getTypeAttaque() const;
 
-    
         
 };
 
@@ -32,22 +31,44 @@ class Attaque{
 ostream& operator<<(ostream &os, const attaque_e &a);
 
 class Animal{
+protected:
+    string  nom_;
+    int     x_;
+    int     y_;
+    bool    vivant_;
+    Attaque type_attaque_;
+
+public:
+    Animal(int maxX, int maxY);
+    Animal(int maxX, int maxY, int a, int b);
+
+    string  getNom() const;
+    int     getX() const;
+    int     getY() const;
+    bool    getVivant() const;
+    Attaque getAttaque() const;
+
+    void    setNom(string nom);
+    void    setVivant(bool v);
+    bool    attaque(Animal &a);
+
+    virtual void setAttaque(Attaque atq) = 0;
+    virtual void deplace(int maxX, int maxY) = 0;
+};
+
+class Lion : public Animal{
 
 };
 
-class Lion{
+class Ours : public Animal{
 
 };
 
-class Ours{
+class Pierre : public Animal{
 
 };
 
-class Pierre{
-
-};
-
-class Loup{
+class Loup : public Animal{
 
 };
 
