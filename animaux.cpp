@@ -169,3 +169,18 @@ string Lion::getChar() const {
 string Ours::getChar() const {
     return "🐻";
 }
+
+/**
+ * Le lion se déplace de manière aléatoire sur le plateau de jeu
+ * x et y sont modifiés de -1 ou 1
+ * TODO: Assurer que la nouvelle position du lion est bien dans les limites du plateau de jeu
+ * @param maxX Taille maximale de l'aire de jeu en x
+ * @param maxY Taille maximale de l'aire de jeu en y
+ */
+void Lion::deplace(int maxX, int maxY) {
+    int positions_possibles[4][2] = {{-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
+    int random_index = random()%4;
+
+    x_ += positions_possibles[random_index][0];
+    y_ += positions_possibles[random_index][1];
+}
