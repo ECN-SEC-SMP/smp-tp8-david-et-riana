@@ -1,4 +1,6 @@
-//EXPLIQUER POURQUOI ON A CHOISIT DE DÉFINIR UN ÉNUM (ON A PAS BESOIN DE LA MÉTHODE GETNOMATTAQUE DCP)
+/*TODO :
+- expliquer pourquoi avoir choisi d'implémenter un enum
+- expliquer pourquoi avoir ajouter une classe plateau*/
 
 #include <iostream>
 #include "animaux.h"
