@@ -1,5 +1,5 @@
-#ifndef SMP_TP8_DAVID_RIANA_JEU_VIE_H
-#define SMP_TP8_DAVID_RIANA_JEU_VIE_H
+#ifndef SMP_TP8_DAVID_RIANA_ANIMAUX_H
+#define SMP_TP8_DAVID_RIANA_ANIMAUX_H
 
 #include <stdlib.h>
 #include <iostream>

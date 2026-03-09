@@ -1,30 +1,15 @@
 #include <iostream>
 #include <stdlib.h>
 #include "animaux.h"
+#include "plateau.h"
 
 using namespace std;
 
 int main() {
     srand(time(NULL));
+    Plateau p = Plateau(5,10);
+    p.affichePlateau();
 
-    //Initialisation du plateau
-    for(int j=0 ; j<10 ; j++){
-    cout << "|" ;
-    for (int i=0 ; i<10 ; i++){
-        cout << "----|";
-    }
-    cout << endl;
-    for (int k=0 ; k<11 ; k++){
-        cout << "|    ";
-    }
-    cout << endl;
-    }
-    cout << "|" ;
-    for (int i=0 ; i<10 ; i++){
-        cout << "----|";
-    }
-    cout << endl;
-    cout << endl;
     
 // Test des attaques
     Attaque a1 = Attaque();
