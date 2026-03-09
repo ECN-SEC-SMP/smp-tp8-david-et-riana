@@ -15,6 +15,24 @@ attaque_e Attaque::getTypeAttaque() const{ //On change le type de retour prck on
     return attaque_; 
 }
 
+bool Attaque::resoudreAttaque(Attaque &a) const{
+    if (getTypeAttaque() == attaque_e::pierre && a.getTypeAttaque() == attaque_e::ciseaux){
+        return true;
+    }
+    else if (getTypeAttaque() == attaque_e::feuille && a.getTypeAttaque() == attaque_e::pierre){
+        return true;
+    }
+    else if (getTypeAttaque() == attaque_e::ciseaux && a.getTypeAttaque() == attaque_e::feuille){
+        return true;
+    }
+    else if (getTypeAttaque() == a.getTypeAttaque()){
+        return (rand()%2);
+    }
+    else{
+        return false;
+    }
+}
+
 ostream& operator<<(ostream &os, const attaque_e &a){
         switch (a)
     {

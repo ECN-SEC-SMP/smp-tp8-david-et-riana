@@ -24,6 +24,10 @@ class Attaque{
         //Getters
         attaque_e getTypeAttaque() const;
 
+        //Méthodes
+        bool resoudreAttaque(Attaque &a) const;
+        //string getNomAttaque() const;
+
         
 };
 
