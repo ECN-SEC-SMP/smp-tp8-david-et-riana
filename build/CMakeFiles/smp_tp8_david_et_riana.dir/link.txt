@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/smp_tp8_david_et_riana.dir/main.cpp.o CMakeFiles/smp_tp8_david_et_riana.dir/animaux.cpp.o -o smp_tp8_david_et_riana 

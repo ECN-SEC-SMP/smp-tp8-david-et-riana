@@ -26,7 +26,7 @@ class Attaque{
 
         //Méthodes
         bool resoudreAttaque(Attaque &a) const;
-        //string getNomAttaque() const;
+        string getNomAttaque() const;
 
         
 };

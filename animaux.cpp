@@ -1,7 +1,11 @@
+//EXPLIQUER POURQUOI ON A CHOISIT DE DÉFINIR UN ÉNUM (ON A PAS BESOIN DE LA MÉTHODE GETNOMATTAQUE DCP)
+
 #include <iostream>
 #include "animaux.h"
 
 using namespace std;
+
+// Méthodes de la classe Attaque
 
 Attaque::Attaque(){
     attaque_ = static_cast<attaque_e> (random()%3);
@@ -32,6 +36,12 @@ bool Attaque::resoudreAttaque(Attaque &a) const{
         return false;
     }
 }
+
+string Attaque::getNomAttaque() const{
+
+}
+
+// Surcharge de l'opérateur <<
 
 ostream& operator<<(ostream &os, const attaque_e &a){
         switch (a)
