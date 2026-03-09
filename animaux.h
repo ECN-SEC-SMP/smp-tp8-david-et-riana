@@ -68,6 +68,7 @@ class Lion : public Animal{
 
 class Ours : public Animal{
     string getChar() const           override;
+    void deplace(int maxX, int maxY) override;
 };
 
 class Pierre : public Animal{

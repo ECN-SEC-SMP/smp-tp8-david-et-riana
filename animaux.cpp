@@ -184,3 +184,20 @@ void Lion::deplace(int maxX, int maxY) {
     x_ += positions_possibles[random_index][0];
     y_ += positions_possibles[random_index][1];
 }
+
+/**
+ * L'ours se déplace de manière aléatoire sur le plateau de jeu
+ * x et y sont modifiés de -2, -1, 1 ou 2
+ * TODO: Assurer que la nouvelle position de l'ours est bien dans les limites du plateau de jeu
+ * @param maxX Taille maximale de l'aire de jeu en x
+ * @param maxY Taille maximale de l'aire de jeu en y
+ */
+void Ours::deplace(int maxX, int maxY) {
+    int positions_possibles[8][2] = {
+        {-1, -2},{1, -2}, {2, -1}, {2, 1},
+        {1, 2}, {-1, 2}, {-2, 1}, {-2, -1}};
+    int random_index = random()%8;
+
+    x_ += positions_possibles[random_index][0];
+    y_ += positions_possibles[random_index][1];
+}
