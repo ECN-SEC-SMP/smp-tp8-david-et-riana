@@ -118,3 +118,36 @@ void Animal::setNom(string nom) {
 void Animal::setVivant(bool v) {
     vivant_ = v;
 }
+
+/**
+ * La pierre ne se déplace pas
+ * @param maxX Taille maximale de l'aire de jeu en x
+ * @param maxY Taille maximale de l'aire de jeu en y
+ */
+void Pierre::deplace(int maxX, int maxY) {
+    // La pierre ne se déplace pas
+}
+
+/**
+ * La pierre attaque toujours pierre
+ * @param atq Attaque à effectuer
+ */
+void Pierre::setAttaque(Attaque atq) {
+    // La pierre attaque toujours pierre
+}
+
+/**
+ * Le loup se déplace de manière aléatoire sur le plateau de jeu
+ * x vaut une valeur aléatoire entre 0 et maxX - 1
+ * y vaut une valeur aléatoire entre 0 et maxY - 1
+ * @param maxX Taille maximale de l'aire de jeu en x
+ * @param maxY Taille maximale de l'aire de jeu en y
+ */
+void Loup::deplace (int maxX, int maxY) {
+    x_ = random()%maxX;
+    y_ = random()%maxY;
+}
+
+void Loup::setAttaque(Attaque atq) {
+    type_attaque_ = atq;
+}

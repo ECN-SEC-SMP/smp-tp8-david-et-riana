@@ -69,11 +69,13 @@ class Ours : public Animal{
 };
 
 class Pierre : public Animal{
-
+    void deplace(int maxX, int maxY) override;
+    void setAttaque(Attaque atq)     override;
 };
 
 class Loup : public Animal{
-
+    void deplace(int maxX, int maxY) override;
+    void setAttaque(Attaque atq)     override;
 };
 
 #endif
