@@ -7,24 +7,14 @@ using namespace std;
 int main() {
     srand(time(NULL));
     Attaque a1 = Attaque();
-    switch (a1.getTypeAttaque())
-    {
-    case attaque_e::pierre :
-         cout << "pierre" <<endl ;
-    break;
+    Attaque a2 = Attaque(2);
 
-    case attaque_e::feuille :
-         cout << "feuille" <<endl ;
-    break;
-
-    case attaque_e::ciseaux :
-         cout << "ciseaux" <<endl ;
-
-    break;
-
-    default:
-        break;
-    }
+    cout << "-------TEST ATTAQUE RANDOM ET PRÉVUE-------" << endl;
+    cout << "Attaque random :" << endl;
+    cout << a1.getTypeAttaque() << endl;
+    cout << "Attaque prévue :" << endl;
+    cout << a2.getTypeAttaque() << endl;
+    cout << "-------------------------------------------" << endl;
 
     return 0;
 }

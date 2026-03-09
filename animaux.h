@@ -24,8 +24,12 @@ class Attaque{
         //Getters
         attaque_e getTypeAttaque() const;
 
+    
         
 };
+
+//Surcharge
+ostream& operator<<(ostream &os, const attaque_e &a);
 
 class Animal{
 
