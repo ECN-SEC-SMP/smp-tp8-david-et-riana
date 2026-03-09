@@ -153,3 +153,19 @@ void Loup::deplace (int maxX, int maxY) {
 void Loup::setAttaque(Attaque atq) {
     type_attaque_ = atq;
 }
+
+string Loup::getChar() const {
+    return "🐺";
+}
+
+string Pierre::getChar() const {
+    return  "🗿";
+}
+
+string Lion::getChar() const {
+    return "🦁";
+}
+
+string Ours::getChar() const {
+    return "🐻";
+}

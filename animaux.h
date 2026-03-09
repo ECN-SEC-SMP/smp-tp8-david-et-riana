@@ -56,26 +56,29 @@ public:
     void    setVivant(bool v);
     bool    attaque(Animal &a);
 
-    virtual void setAttaque(Attaque atq) = 0;
+    virtual void setAttaque(Attaque atq)     = 0;
     virtual void deplace(int maxX, int maxY) = 0;
+    virtual string getChar()           const = 0;
 };
 
 class Lion : public Animal{
-
+    string getChar() const           override;
 };
 
 class Ours : public Animal{
-
+    string getChar() const           override;
 };
 
 class Pierre : public Animal{
     void deplace(int maxX, int maxY) override;
     void setAttaque(Attaque atq)     override;
+    string getChar() const           override;
 };
 
 class Loup : public Animal{
     void deplace(int maxX, int maxY) override;
     void setAttaque(Attaque atq)     override;
+    string getChar() const           override;
 };
 
 #endif
