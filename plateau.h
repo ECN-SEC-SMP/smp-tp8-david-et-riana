@@ -2,6 +2,7 @@
 #define SMP_TP8_DAVID_RIANA_PLATEAU_H
 
 #include <iostream>
+#include<vector>
 #include "animaux.h"
 
 using namespace std;
