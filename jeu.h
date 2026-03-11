@@ -1,0 +1,5 @@
+#ifndef SMP_TP8_DAVID_RIANA_JEU_H
+#define SMP_TP8_DAVID_RIANA_JEU_H
+
+
+#endif

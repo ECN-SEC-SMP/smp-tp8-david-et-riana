@@ -7,4 +7,6 @@ add_executable(smp_tp8_david_et_riana main.cpp
             animaux.cpp
             animaux.h
             plateau.cpp
-            plateau.h)
+            plateau.h
+            jeu.cpp
+            jeu.h)
