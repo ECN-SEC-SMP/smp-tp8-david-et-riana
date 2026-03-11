@@ -27,8 +27,6 @@ class Attaque{
         //Méthodes
         bool resoudreAttaque(Attaque &a) const;
         string getNomAttaque() const;
-
-        
 };
 
 //Surcharge

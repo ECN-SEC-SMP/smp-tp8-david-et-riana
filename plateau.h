@@ -1,20 +1,21 @@
 #ifndef SMP_TP8_DAVID_RIANA_PLATEAU_H
 #define SMP_TP8_DAVID_RIANA_PLATEAU_H
 
-#include <stdlib.h>
 #include <iostream>
+#include "animaux.h"
 
 using namespace std;
 
 class Plateau{
-private:
-    int longueur_ ;
-    int largeur_ ;
+    int longueur_;
+    int largeur_;
+    vector<Animal*> animals_;
 public:
     Plateau(int longueur,int largeur);
-    int getLongueur();
-    int getLargeur();
-    void affichePlateau();
+    int getLongueur() const;
+    int getLargeur()  const;
+    void affichePlateau() const;
+    void ajouterAnimal(Animal *a);
 };
 
 

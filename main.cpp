@@ -7,7 +7,7 @@ using namespace std;
 
 int main() {
     srand(time(NULL));
-    Plateau p = Plateau(5,10);
+    Plateau p = Plateau(5,6);
     p.affichePlateau();
 
     
