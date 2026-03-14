@@ -105,12 +105,28 @@ string Animal::getNom() const {
     return nom_;
 }
 
+/**
+  * @brief x représent la position réelle en abscisses de l'animal sur le plateau de jeu
+  * @return x variant entre 0 et maxX - 1
+  */
 int Animal::getX() const {
-    return x_;
+    return x_ % maxX_;
 }
 
+/**
+  * @brief y représent la position réelle en ordonnées de l'animal sur le plateau de jeu
+  * @return y variant entre 0 et maxY - 1
+  */
 int Animal::getY() const {
-    return y_;
+    return y_ % maxY_;
+}
+
+void Animal::setX(int x) {
+    x_ = x;
+}
+
+void Animal::setY(int y) {
+    y_ = y;
 }
 
 bool Animal::getVivant() const {
@@ -127,6 +143,13 @@ void Animal::setNom(string nom) {
 
 void Animal::setVivant(bool v) {
     vivant_ = v;
+}
+
+ostream& operator<<(ostream &os, const Animal &a){
+    os << a.getNom() << ": (" << a.getX() << ", " << a.getY() << ") " << endl;
+    os << (a.getVivant() ? "vivant" : "mort")                         << endl;
+    os << " attaque : " << a.getAttaque().getTypeAttaque()            << endl;
+    return os;
 }
 
 /**

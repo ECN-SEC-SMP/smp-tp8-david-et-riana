@@ -34,8 +34,8 @@ void Plateau::affichePlateau() const {
             isAnimalPresent = false;
 
                 for (Animal *a : animals_) {
-                    if (a->getX() == j
-                        && a->getY() == k
+                    if (a->getX() == k
+                        && a->getY() == j
                         && a->getVivant()) {
                         isAnimalPresent = true;
                         animalTrouve = a;
@@ -60,4 +60,8 @@ void Plateau::affichePlateau() const {
 
 void Plateau::ajouterAnimal(Animal *a) {
     animals_.push_back(a);
+}
+
+Animal * Plateau::getAnimalAtIndex(int i) const {
+    return animals_.at(i);
 }

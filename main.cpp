@@ -1,3 +1,4 @@
+#include <cassert>
 #include <iostream>
 #include <stdlib.h>
 #include "animaux.h"
@@ -34,7 +35,7 @@ int main() {
     // Test plateau
     const int maxX = 5;
     const int maxY = 6;
-    auto p = Plateau(maxX,maxY);
+    auto p = Plateau(maxY,maxX);
 
     // Affichage du plateau vide
     p.affichePlateau();
@@ -42,7 +43,17 @@ int main() {
     p.ajouterAnimal(new Loup(maxX, maxY, 1, 1));
     p.ajouterAnimal(new Lion(maxX, maxY, 2, 2));
     p.ajouterAnimal(new Ours(maxX, maxY, 3, 4));
-    p.ajouterAnimal(new Pierre(maxX, maxY, 0, 3));
+    p.ajouterAnimal(new Pierre(maxX, maxY, 2, 3));
+
+    p.ajouterAnimal(new Pierre(maxX, maxY, 5, 6));
+    assert(p.getAnimalAtIndex(4)->getX() == 0 && "Position x réelle de la pierre doit être 0");
+    assert(p.getAnimalAtIndex(4)->getY() == 0 && "Position y réelle de la pierre doit être 0");
+
+    p.getAnimalAtIndex(3)->setX(6);
+    assert(p.getAnimalAtIndex(3)->getX() == 1 && "Position x réelle de la pierre doit être 1");
+
+    p.getAnimalAtIndex(1)->setY(6);
+    assert(p.getAnimalAtIndex(1)->getY() == 0 && "Position y réelle du lion doit être 0");
 
     // Affichage du plateau avec un Loup, un Lion, un Ours et une Pierre
     cout << "-------Plateau : Loup, Lion, Ours et Pierre -------" << endl;

@@ -36,6 +36,10 @@ ostream& operator<<(ostream &os, const attaque_e &a);
 class Animal{
 protected:
     string  nom_;
+
+    /**
+     * x et y représentent la position de l'animal sur le plateau de jeu
+     */
     int     x_;
     int     y_;
     bool    vivant_;
@@ -51,6 +55,8 @@ public:
     string  getNom() const;
     int     getX() const;
     int     getY() const;
+    void    setX(int x);
+    void    setY(int y);
     bool    getVivant() const;
     Attaque getAttaque() const;
 
@@ -62,6 +68,8 @@ public:
     virtual void deplace(int maxX, int maxY) = 0;
     virtual string getChar()           const = 0;
 };
+
+ostream& operator<<(ostream &os, const Animal &a);
 
 class Lion : public Animal{
 public:
