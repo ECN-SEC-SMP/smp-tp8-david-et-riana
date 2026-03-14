@@ -35,7 +35,7 @@ int main() {
     // Test plateau
     const int maxX = 5;
     const int maxY = 6;
-    auto p = Plateau(maxY,maxX);
+    auto p = Plateau(maxX,maxY);
 
     // Affichage du plateau vide
     p.affichePlateau();

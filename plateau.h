@@ -12,7 +12,7 @@ class Plateau{
     int largeur_;
     vector<Animal*> animals_;
 public:
-    Plateau(int longueur,int largeur);
+    Plateau(int largeur,int longueur);
     int getLongueur() const;
     int getLargeur()  const;
     void affichePlateau() const;

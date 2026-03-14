@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Plateau::Plateau(int longueur,int largeur){ 
+Plateau::Plateau(int largeur,int longueur){
     longueur_ = longueur ;
     largeur_ = largeur ;
 }
