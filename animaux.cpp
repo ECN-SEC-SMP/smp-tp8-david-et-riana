@@ -17,6 +17,10 @@ Attaque::Attaque(int a){
     attaque_ = static_cast<attaque_e> (a%3);
 }
 
+Attaque::Attaque(attaque_e a) {
+    attaque_ = a;
+}
+
 attaque_e Attaque::getTypeAttaque() const{ //On change le type de retour prck on a implémenté un enum
     return attaque_; 
 }
@@ -68,29 +72,33 @@ ostream& operator<<(ostream &os, const attaque_e &a){
 }
 
 /**
- * Contructeur de la classe Animal
+ * Constructeur de la classe Animal
  * Place l'animal à la position (0, 0) sur le plateau de jeu
  * @param maxX Taille maximale de l'aire de jeu en x
  * @param maxY Taille maximale de l'aire de jeu en y
  */
-Animal::Animal(int maxX, int maxY) {
+Animal::Animal(const int maxX, const int maxY) {
     vivant_ = true;
     x_ = 0;
     y_ = 0;
+    maxX_ = maxX;
+    maxY_ = maxY;
 }
 
 /**
- * Contructeur de la classe Animal
+ * Constructeur de la classe Animal
  * Place l'animal à la position (a, b) sur le plateau de jeu
  * @param maxX Taille maximale de l'aire de jeu en x
  * @param maxY Taille maximale de l'aire de jeu en y
  * @param a Position en x de l'animal
  * @param b Position en y de l'animal
  */
-Animal::Animal(int maxX, int maxY, int a, int b) {
+Animal::Animal(const int maxX, const int maxY, const int a, const int b) {
     vivant_ = true;
     x_ = a;
     y_ = b;
+    maxX_ = maxX;
+    maxY_ = maxY;
 }
 
 string Animal::getNom() const {
@@ -131,11 +139,14 @@ void Pierre::deplace(int maxX, int maxY) {
 }
 
 /**
- * La pierre attaque toujours pierre
- * @param atq Attaque à effectuer
+ * @brief Définit l'attaque de la pierre sur pierre.
  */
-void Pierre::setAttaque(Attaque atq) {
-    // La pierre attaque toujours pierre
+void Pierre::setAttaque() {
+    type_attaque_ = Attaque(attaque_e::pierre);
+}
+
+string Pierre::getChar() const {
+    return  "🗿";
 }
 
 /**
@@ -150,24 +161,15 @@ void Loup::deplace (int maxX, int maxY) {
     y_ = random()%maxY;
 }
 
-void Loup::setAttaque(Attaque atq) {
-    type_attaque_ = atq;
+/**
+ * @brief Le loup attaque de manière aléatoire pierre, feuille ou ciseaux
+ */
+void Loup::setAttaque() {
+    type_attaque_ = Attaque();
 }
 
 string Loup::getChar() const {
     return "🐺";
-}
-
-string Pierre::getChar() const {
-    return  "🗿";
-}
-
-string Lion::getChar() const {
-    return "🦁";
-}
-
-string Ours::getChar() const {
-    return "🐻";
 }
 
 /**
@@ -186,6 +188,17 @@ void Lion::deplace(int maxX, int maxY) {
 }
 
 /**
+ * @brief Le lion attaque de manière aléatoire feuille ou ciseaux
+ */
+void Lion::setAttaque() {
+    type_attaque_ = Attaque(random()%2 + 1);
+}
+
+string Lion::getChar() const {
+    return "🦁";
+}
+
+/**
  * L'ours se déplace de manière aléatoire sur le plateau de jeu
  * x et y sont modifiés de -2, -1, 1 ou 2
  * TODO: Assurer que la nouvelle position de l'ours est bien dans les limites du plateau de jeu
@@ -200,4 +213,15 @@ void Ours::deplace(int maxX, int maxY) {
 
     x_ += positions_possibles[random_index][0];
     y_ += positions_possibles[random_index][1];
+}
+
+/**
+ * @brief Définit l'attaque de l'ours sur feuille.
+ */
+void Ours::setAttaque() {
+    type_attaque_ = Attaque(attaque_e::feuille);
+}
+
+string Ours::getChar() const {
+    return "🐻";
 }

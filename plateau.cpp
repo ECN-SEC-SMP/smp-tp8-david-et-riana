@@ -18,6 +18,8 @@ int Plateau::getLargeur() const {
 
 void Plateau::affichePlateau() const {
     //Initialisation du plateau
+    bool isAnimalPresent = false;
+    Animal *animalTrouve = nullptr;
 
     // j représente la position en x
     // k représente la position en y
@@ -28,27 +30,31 @@ void Plateau::affichePlateau() const {
             cout << "----|";
         }
         cout << endl;
-        for (int k = 0; k < getLargeur() + 1; k++) {
-            cout << "|    ";
-            if (k < getLargeur()) {
+        for (int k = 0; k < getLargeur(); k++) {
+            isAnimalPresent = false;
+
                 for (Animal *a : animals_) {
                     if (a->getX() == j
                         && a->getY() == k
                         && a->getVivant()) {
-
-                        cout << a->getChar() << "   ";
+                        isAnimalPresent = true;
+                        animalTrouve = a;
                         break;
                     }
                 }
-            }
+
+                if (isAnimalPresent) {
+                    cout << "| "  << animalTrouve->getChar() << " ";
+                } else {
+                    cout << "|    ";
+                }
         }
-        cout << endl;
+        cout << "|" << endl;
     }
     cout << "|";
     for (int i = 0; i < getLargeur(); i++) {
         cout << "----|";
     }
-    cout << endl;
     cout << endl;
 }
 

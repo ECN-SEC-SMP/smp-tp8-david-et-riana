@@ -7,10 +7,7 @@ using namespace std;
 
 int main() {
     srand(time(NULL));
-    Plateau p = Plateau(5,6);
-    p.affichePlateau();
 
-    
 // Test des attaques
     Attaque a1 = Attaque();
     Attaque a2 = Attaque(2);
@@ -33,6 +30,23 @@ int main() {
     cout << "Attaque avec égalité :" << endl;
     cout << a2.resoudreAttaque(a5) << endl;
     cout << "-------------------------------------------" << endl;
+
+    // Test plateau
+    const int maxX = 5;
+    const int maxY = 6;
+    auto p = Plateau(maxX,maxY);
+
+    // Affichage du plateau vide
+    p.affichePlateau();
+
+    p.ajouterAnimal(new Loup(maxX, maxY, 1, 1));
+    p.ajouterAnimal(new Lion(maxX, maxY, 2, 2));
+    p.ajouterAnimal(new Ours(maxX, maxY, 3, 4));
+    p.ajouterAnimal(new Pierre(maxX, maxY, 0, 3));
+
+    // Affichage du plateau avec un Loup, un Lion, un Ours et une Pierre
+    cout << "-------Plateau : Loup, Lion, Ours et Pierre -------" << endl;
+    p.affichePlateau();
 
     return 0;
 }
