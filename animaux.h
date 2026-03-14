@@ -26,7 +26,7 @@ class Attaque{
         attaque_e getTypeAttaque() const;
 
         //Méthodes
-        bool resoudreAttaque(Attaque &a) const;
+        bool resoudreAttaque(const Attaque &a) const;
         string getNomAttaque() const;
 };
 
@@ -57,6 +57,7 @@ public:
     void    setX(int x);
     void    setY(int y);
     bool    getVivant()  const;
+
     Attaque getAttaque() const;
     string  getNom()     const;
 
@@ -77,11 +78,16 @@ public:
 
     Lion(const int maxX,  const int maxY) : Animal(maxX, maxY) {
         Lion::id++;
-        nom_ = "Lion " + to_string(Lion::id);
+        nom_          = "Lion " + to_string(Lion::id);
+        type_attaque_ = Attaque(attaque_e::feuille);
     } ;
-    Lion(const int maxX, const int maxY, const int a, const int b) : Animal(maxX, maxY, a, b) {
+    Lion(const int maxX, const int maxY,
+        const int a, const int b,
+        const attaque_e attq = attaque_e::feuille) : Animal(maxX, maxY, a, b) {
+
         Lion::id++;
-        nom_ = "Lion " + to_string(Lion::id);
+        nom_          = "Lion " + to_string(Lion::id);
+        type_attaque_ = Attaque(attq);
     };
 
     string getChar() const           override;
@@ -95,11 +101,13 @@ public:
 
     Ours(const int maxX, const int maxY)                           : Animal(maxX, maxY) {
         Ours::id++;
-        nom_ = "Ours " + to_string(Ours::id);
+        nom_          = "Ours " + to_string(Ours::id);
+        type_attaque_ = Attaque(attaque_e::feuille);
     };
     Ours(const int maxX, const int maxY, const int a, const int b) : Animal(maxX, maxY, a, b) {
         Ours::id++;
-        nom_ = "Ours " + to_string(Ours::id);
+        nom_          = "Ours " + to_string(Ours::id);
+        type_attaque_ = Attaque(attaque_e::feuille);
     };
 
     string getChar() const           override;
@@ -114,11 +122,13 @@ public:
 
     Pierre(const int maxX, const int maxY)                           : Animal(maxX, maxY) {
         Pierre::id++;
-        nom_ = "Pierre " + to_string(Pierre::id);
+        nom_          = "Pierre " + to_string(Pierre::id);
+        type_attaque_ = Attaque(attaque_e::pierre);
     };
     Pierre(const int maxX, const int maxY, const int a, const int b) : Animal(maxX, maxY, a, b) {
         Pierre::id++;
-        nom_ = "Pierre " + to_string(Pierre::id);
+        nom_          = "Pierre " + to_string(Pierre::id);
+        type_attaque_ = Attaque(attaque_e::pierre);
     };
 
     void deplace(int maxX, int maxY) override;
@@ -133,10 +143,15 @@ public:
     Loup(const int maxX, const int maxY)                           : Animal(maxX, maxY) {
         Loup::id++;
         nom_ = "Loup " + to_string(Loup::id);
+        type_attaque_ = Attaque(attaque_e::ciseaux);
     };
-    Loup(const int maxX, const int maxY, const int a, const int b) : Animal(maxX, maxY, a, b) {
+    Loup(const int maxX, const int maxY,
+        const int a, const int b,
+        const attaque_e attq = attaque_e::ciseaux) : Animal(maxX, maxY, a, b) {
+
         Loup::id++;
-        nom_ = "Loup " + to_string(Loup::id);
+        nom_          = "Loup " + to_string(Loup::id);
+        type_attaque_ = Attaque(attq);
     };
 
     void deplace(int maxX, int maxY) override;

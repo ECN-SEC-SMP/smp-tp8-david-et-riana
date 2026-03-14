@@ -25,7 +25,7 @@ attaque_e Attaque::getTypeAttaque() const{ //On change le type de retour prck on
     return attaque_; 
 }
 
-bool Attaque::resoudreAttaque(Attaque &a) const{
+bool Attaque::resoudreAttaque(const Attaque &a) const{
     if (getTypeAttaque() == attaque_e::pierre && a.getTypeAttaque() == attaque_e::ciseaux){
         return true;
     }
@@ -143,6 +143,27 @@ void Animal::setNom(string nom) {
 
 void Animal::setVivant(bool v) {
     vivant_ = v;
+}
+
+/**
+ * @brief Résout l'attaque entre l'animal courant et l'animal attaqué
+ * @param a Animal attaqué
+ * @return true si l'attaque de l'animal courant est gagnante contre l'animal attaqué, false sinon
+ */
+bool Animal::attaque(Animal &a) {
+    if (!getVivant() || !a.getVivant()) {
+        return false; // Un animal mort ne peut pas attaquer ou être attaqué
+    }
+
+    if (getAttaque().resoudreAttaque(a.getAttaque())) {
+        //Attaque est réussi
+        a.setVivant(false);
+        return true;
+    }
+
+    // Attaque a échoué
+    setVivant(false);
+    return false;
 }
 
 ostream& operator<<(ostream &os, const Animal &a){

@@ -62,5 +62,70 @@ int main() {
 
     p.afficheAnimals();
 
+    // Test attaque
+    cout << "-------Test attaque --------" << endl;
+    auto lion2   = Lion(maxX, maxY);
+    auto loup2   = Loup(maxX, maxY);
+    auto loup3   = Loup(maxX, maxY);
+    auto loup4   = Loup(maxX, maxY);
+    auto ours2   = Ours(maxX, maxY);
+    auto ours3   = Ours(maxX, maxY);
+    auto pierre3 = Pierre(maxX, maxY);
+    auto pierre4 = Pierre(maxX, maxY);
+
+    // ----------------------------------------------------------------------------------
+
+    auto attq_feuille_pierre = lion2.attaque(pierre3);
+    assert(attq_feuille_pierre == true && "La feuille gagne contre la pierre");
+    assert(lion2.getVivant() == true && "Le lion doit être vivant après l'attaque");
+    assert(pierre3.getVivant() == false && "La pierre doit être morte après l'attaque");
+
+    auto attq_ciseaux_pierre = loup2.attaque(pierre4);
+    assert(attq_ciseaux_pierre == false && "Les ciseaux perdent contre la pierre");
+    assert(loup2.getVivant() == false && "Le loup doit être mort après l'attaque");
+    assert(pierre4.getVivant() == true && "La pierre doit être vivante après l'attaque");
+
+    // ----------------------------------------------------------------------------------
+
+    auto attq_pierre_ciseaux = pierre4.attaque(loup3);
+    assert(attq_pierre_ciseaux == true && "La pierre gagne contre les ciseaux");
+    assert(pierre4.getVivant() == true && "La pierre doit être vivante après l'attaque");
+    assert(loup3.getVivant() == false && "Le loup doit être mort après l'attaque");
+
+    auto attq_feuille_ciseaux = ours2.attaque(loup4);
+    assert(attq_feuille_ciseaux == false && "La feuille perd contre les ciseaux");
+    assert(ours2.getVivant() == false && "L'ours doit être mort après l'attaque");
+    assert(loup4.getVivant() == true && "Le loup doit être vivant après l'attaque");
+
+    // ----------------------------------------------------------------------------------
+
+    auto attq_pierre_feuille = pierre4.attaque(ours3);
+    assert(attq_pierre_feuille == false && "La pierre perd contre la feuille");
+    assert(pierre4.getVivant() == false && "La pierre doit être morte après l'attaque");
+    assert(ours3.getVivant() == true && "L'ours doit être vivant après l'attaque");
+
+    auto attq_ciseaux_feuille = loup4.attaque(ours3);
+    assert(attq_ciseaux_feuille == true && "Les ciseaux gagnent contre la feuille");
+    assert(loup4.getVivant() == true && "Le loup doit être vivant après l'attaque");
+    assert(ours3.getVivant() == false && "L'ours doit être mort après l'attaque");
+
+    // ----------------------------------------------------------------------------------
+    // Attaque un animal vivant vs en animal mort
+
+    auto attq_vivant_mort = loup4.attaque(ours3);
+    assert(attq_vivant_mort == false && "Un animal vivant ne peut pas attaquer un animal mort");
+    assert(loup4.getVivant() == true && "Le loup doit être vivant après l'attaque");
+    assert(ours3.getVivant() == false && "L'ours doit être mort après l'attaque");
+
+    auto attq_mort_vivant = ours3.attaque(loup4);
+    assert(attq_mort_vivant == false && "Un animal mort ne peut pas attaquer un animal vivant");
+    assert(ours3.getVivant() == false && "L'ours doit être mort après l'attaque");
+    assert(loup4.getVivant() == true && "Le loup doit être vivant après l'attaque");
+
+    auto attq_mort_mort = pierre4.attaque(ours3);
+    assert(attq_mort_mort == false && "Un animal mort ne peut pas attaquer un animal mort");
+    assert(pierre4.getVivant() == false && "La pierre doit être morte après l'attaque");
+    assert(ours3.getVivant() == false && "L'ours doit être mort après l'attaque");
+
     return 0;
 }
