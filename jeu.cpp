@@ -5,10 +5,10 @@
 
 using namespace std;
 
-void Jeu::partie(int longueur_plateau, int largeur_plateau){
+void Jeu::partie(int largeur_plateau, int longueur_plateau){
     char b;
     bool cont;
-    Plateau p = Plateau(longueur_plateau,largeur_plateau);
+    Plateau p = Plateau(largeur_plateau, longueur_plateau);
     cout << "Voulez-vous continuer la partie? [y/n]" << endl;
     cin >> b ;
     if (b=='y'){
