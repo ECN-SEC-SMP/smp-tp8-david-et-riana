@@ -52,13 +52,13 @@ public:
     Animal(int maxX, int maxY, int a, int b);
     ~Animal() = default;
 
-    string  getNom() const;
     int     getX() const;
     int     getY() const;
     void    setX(int x);
     void    setY(int y);
-    bool    getVivant() const;
+    bool    getVivant()  const;
     Attaque getAttaque() const;
+    string  getNom()     const;
 
     void    setNom(string nom);
     void    setVivant(bool v);
@@ -73,8 +73,16 @@ ostream& operator<<(ostream &os, const Animal &a);
 
 class Lion : public Animal{
 public:
-    Lion(const int maxX, const int maxY)                           : Animal(maxX, maxY) {};
-    Lion(const int maxX, const int maxY, const int a, const int b) : Animal(maxX, maxY, a, b) {};
+    static int id;
+
+    Lion(const int maxX,  const int maxY) : Animal(maxX, maxY) {
+        Lion::id++;
+        nom_ = "Lion " + to_string(Lion::id);
+    } ;
+    Lion(const int maxX, const int maxY, const int a, const int b) : Animal(maxX, maxY, a, b) {
+        Lion::id++;
+        nom_ = "Lion " + to_string(Lion::id);
+    };
 
     string getChar() const           override;
     void deplace(int maxX, int maxY) override;
@@ -83,18 +91,35 @@ public:
 
 class Ours : public Animal{
 public:
-    Ours(const int maxX, const int maxY)                           : Animal(maxX, maxY) {};
-    Ours(const int maxX, const int maxY, const int a, const int b) : Animal(maxX, maxY, a, b) {};
+    static int id;
+
+    Ours(const int maxX, const int maxY)                           : Animal(maxX, maxY) {
+        Ours::id++;
+        nom_ = "Ours " + to_string(Ours::id);
+    };
+    Ours(const int maxX, const int maxY, const int a, const int b) : Animal(maxX, maxY, a, b) {
+        Ours::id++;
+        nom_ = "Ours " + to_string(Ours::id);
+    };
 
     string getChar() const           override;
+
     void deplace(int maxX, int maxY) override;
     void setAttaque()                override;
 };
 
 class Pierre : public Animal{
 public:
-    Pierre(const int maxX, const int maxY)                           : Animal(maxX, maxY) {};
-    Pierre(const int maxX, const int maxY, const int a, const int b) : Animal(maxX, maxY, a, b) {};
+    static int id;
+
+    Pierre(const int maxX, const int maxY)                           : Animal(maxX, maxY) {
+        Pierre::id++;
+        nom_ = "Pierre " + to_string(Pierre::id);
+    };
+    Pierre(const int maxX, const int maxY, const int a, const int b) : Animal(maxX, maxY, a, b) {
+        Pierre::id++;
+        nom_ = "Pierre " + to_string(Pierre::id);
+    };
 
     void deplace(int maxX, int maxY) override;
     void setAttaque()                override;
@@ -103,8 +128,16 @@ public:
 
 class Loup : public Animal{
 public:
-    Loup(const int maxX, const int maxY)                           : Animal(maxX, maxY) {};
-    Loup(const int maxX, const int maxY, const int a, const int b) : Animal(maxX, maxY, a, b) {};
+    static int id;
+
+    Loup(const int maxX, const int maxY)                           : Animal(maxX, maxY) {
+        Loup::id++;
+        nom_ = "Loup " + to_string(Loup::id);
+    };
+    Loup(const int maxX, const int maxY, const int a, const int b) : Animal(maxX, maxY, a, b) {
+        Loup::id++;
+        nom_ = "Loup " + to_string(Loup::id);
+    };
 
     void deplace(int maxX, int maxY) override;
     void setAttaque()                override;

@@ -148,9 +148,12 @@ void Animal::setVivant(bool v) {
 ostream& operator<<(ostream &os, const Animal &a){
     os << a.getNom() << ": (" << a.getX() << ", " << a.getY() << ") " << endl;
     os << (a.getVivant() ? "vivant" : "mort")                         << endl;
-    os << " attaque : " << a.getAttaque().getTypeAttaque()            << endl;
+    os << "attaque : " << a.getAttaque().getTypeAttaque()            << endl;
+    os << "--";
     return os;
 }
+
+int Pierre::id = 0;
 
 /**
  * La pierre ne se déplace pas
@@ -171,6 +174,8 @@ void Pierre::setAttaque() {
 string Pierre::getChar() const {
     return  "🗿";
 }
+
+int Loup::id = 0;
 
 /**
  * Le loup se déplace de manière aléatoire sur le plateau de jeu
@@ -194,6 +199,8 @@ void Loup::setAttaque() {
 string Loup::getChar() const {
     return "🐺";
 }
+
+int Lion::id = 0;
 
 /**
  * Le lion se déplace de manière aléatoire sur le plateau de jeu
@@ -220,6 +227,8 @@ void Lion::setAttaque() {
 string Lion::getChar() const {
     return "🦁";
 }
+
+int Ours::id = 0;
 
 /**
  * L'ours se déplace de manière aléatoire sur le plateau de jeu

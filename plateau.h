@@ -18,8 +18,7 @@ public:
     void affichePlateau() const;
     void ajouterAnimal(Animal *a);
     Animal* getAnimalAtIndex(int i)     const;
+    void afficheAnimals() const;
 };
-
-
 
 #endif

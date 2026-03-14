@@ -59,5 +59,7 @@ int main() {
     cout << "-------Plateau : Loup, Lion, Ours et Pierre -------" << endl;
     p.affichePlateau();
 
+    p.afficheAnimals();
+
     return 0;
 }

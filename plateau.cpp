@@ -65,3 +65,9 @@ void Plateau::ajouterAnimal(Animal *a) {
 Animal * Plateau::getAnimalAtIndex(int i) const {
     return animals_.at(i);
 }
+
+void Plateau::afficheAnimals() const {
+    for (Animal *a : animals_) {
+        cout << *a << endl;
+    }
+}
