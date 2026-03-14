@@ -19,6 +19,8 @@ public:
     void ajouterAnimal(Animal *a);
     Animal* getAnimalAtIndex(int i)     const;
     void afficheAnimals() const;
+    int  nbAnimalEnVie() const;
+    void afficherNbAnimalEnVie() const;
 };
 
 #endif

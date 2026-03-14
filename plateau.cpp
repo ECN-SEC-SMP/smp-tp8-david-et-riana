@@ -71,3 +71,18 @@ void Plateau::afficheAnimals() const {
         cout << *a << endl;
     }
 }
+
+int Plateau::nbAnimalEnVie() const {
+    int nb = 0;
+    for (Animal *a : animals_) {
+        if (a->getVivant()) {
+            nb++;
+        }
+    }
+
+    return nb;
+}
+
+void Plateau::afficherNbAnimalEnVie() const {
+    cout << "Il y a " << nbAnimalEnVie() << " animaux vivants" << endl;
+}

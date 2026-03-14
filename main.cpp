@@ -58,6 +58,7 @@ int main() {
     // Affichage du plateau avec un Loup, un Lion, un Ours et une Pierre
     cout << "-------Plateau : Loup, Lion, Ours et Pierre -------" << endl;
     p.affichePlateau();
+    p.afficherNbAnimalEnVie();
 
     p.afficheAnimals();
 
