@@ -83,10 +83,11 @@ void Jeu::partie(int largeur_plateau, int longueur_plateau){
     }
 
     //Début du jeu
+    cout << "Plateau initial" << endl;
     plateau_.affichePlateau();
-    
+        while (cont){
         for (Animal *a : plateau_.getAnimals()){
-            while (cont){
+            
                 compt ++;
                 cout << "------------------------------------------------------------------------"<< endl;
                 a->deplace(largeur_plateau,longueur_plateau);
