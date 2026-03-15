@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "animaux.h"
 #include "plateau.h"
+#include "jeu.h"
 
 using namespace std;
 
@@ -126,6 +127,27 @@ int main() {
     assert(attq_mort_mort == false && "Un animal mort ne peut pas attaquer un animal mort");
     assert(pierre4.getVivant() == false && "La pierre doit être morte après l'attaque");
     assert(ours3.getVivant() == false && "L'ours doit être mort après l'attaque");
+
+    cout << "------------------------------------------------------------------------"<< endl;
+    int longu;
+    int larg;
+
+    cout << "Quelle est la largeur de plateau souhaitée ?" << endl;
+    cin >> larg ;
+    cout << "Quelle est la longueur de plateau souhaitée ?" << endl;
+    cin >> longu ;
+    Plateau pl(larg,longu);
+    Loup* loup1   = new Loup(larg, longu, 1, 1);  // x=1, y=1
+    Lion* lion1   = new Lion(larg, longu, 2, 2);
+    Ours* ours1   = new Ours(larg, longu, 3, 4);
+    Pierre* pierre1 = new Pierre(larg, longu, 0, 0);
+    pl.ajouterAnimal(loup1);
+    pl.ajouterAnimal(lion1);
+    pl.ajouterAnimal(ours1);
+    pl.ajouterAnimal(pierre1);
+    pl.afficheAnimals();
+    Jeu j(pl);
+    j.partie(larg,longu);
 
     return 0;
 }

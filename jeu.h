@@ -11,6 +11,7 @@ class Jeu{
     private : 
     Plateau plateau_ ;
     public:
+    Jeu(Plateau& p);
     void partie(int largeur_plateau, int longueur_plateau);
 };
 

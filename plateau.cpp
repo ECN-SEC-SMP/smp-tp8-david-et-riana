@@ -12,6 +12,10 @@ int Plateau::getLongueur() const {
     return longueur_;
 }
 
+const vector<Animal*>& Plateau::getAnimals() const{
+    return animals_; 
+}
+
 int Plateau::getLargeur() const {
     return largeur_;
 }
@@ -85,4 +89,14 @@ int Plateau::nbAnimalEnVie() const {
 
 void Plateau::afficherNbAnimalEnVie() const {
     cout << "Il y a " << nbAnimalEnVie() << " animaux vivants" << endl;
+}
+
+bool Plateau::estCaseVide(int x, int y) const{
+    for (Animal* a : animals_) {
+
+        if (a->getX() == x && a->getY() == y && a->getVivant()) {
+            return false;   // case occupée
+        }
+    }
+    return true;   //case vide
 }

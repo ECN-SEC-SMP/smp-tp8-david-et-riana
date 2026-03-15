@@ -15,12 +15,15 @@ public:
     Plateau(int largeur,int longueur);
     int getLongueur() const;
     int getLargeur()  const;
+    const vector<Animal*>& getAnimals() const;
     void affichePlateau() const;
     void ajouterAnimal(Animal *a);
     Animal* getAnimalAtIndex(int i)     const;
     void afficheAnimals() const;
     int  nbAnimalEnVie() const;
     void afficherNbAnimalEnVie() const;
+    bool estCaseVide(int x,int y) const;
+
 };
 
 #endif
