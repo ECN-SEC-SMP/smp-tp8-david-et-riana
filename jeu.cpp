@@ -8,6 +8,7 @@ using namespace std;
 Jeu::Jeu(Plateau& p) : plateau_(p){}
 
 void Jeu::partie(int largeur_plateau, int longueur_plateau){
+    int compt =0;
     char b;
     bool cont = true;
     //Déclaration des abscisses et ordonnées pour chaque animaux (modifiés pour chaque instance)
@@ -86,29 +87,28 @@ void Jeu::partie(int largeur_plateau, int longueur_plateau){
     
         for (Animal *a : plateau_.getAnimals()){
             while (cont){
-            plateau_.affichePlateau();
-            plateau_.afficherNbAnimalEnVie();
-            plateau_.afficheAnimals();
-            cout << "------------------------------------------------------------------------"<< endl;
-            a->deplace(largeur_plateau,longueur_plateau);
-            for (Animal *b : plateau_.getAnimals()){
-                if (a->getX() == b->getX() && a->getY() == b->getY()){
-                    a->attaque(*b);
+                compt ++;
+                cout << "------------------------------------------------------------------------"<< endl;
+                a->deplace(largeur_plateau,longueur_plateau);
+                for (Animal *b : plateau_.getAnimals()){
+                    if (a->getX() == b->getX() && a->getY() == b->getY()){
+                        a->attaque(*b);
+                    }
                 }
+                cout << "Partie " << compt << endl;
+                plateau_.affichePlateau();
+                plateau_.afficherNbAnimalEnVie();
+                plateau_.afficheAnimals();
+                cout << "Voulez-vous continuer la partie ? [y/n]" << endl;
+                cin >> b ;
+                if (b=='y'){
+                    cont = true;
+                }
+                else{
+                    cont = false;
+                }   
             }
-             plateau_.affichePlateau();
-             plateau_.afficherNbAnimalEnVie();
-             plateau_.afficheAnimals();
-             cout << "Voulez-vous continuer la partie ? [y/n]" << endl;
-             cin >> b ;
-             if (b=='y'){
-                cont = true;
-             }
-             else{
-                cont = false;
-             }   
-        }
    
-    }
+        }
 
 }
