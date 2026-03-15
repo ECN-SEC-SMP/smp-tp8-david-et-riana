@@ -86,21 +86,23 @@ void Jeu::partie(int largeur_plateau, int longueur_plateau){
     cout << "Plateau initial" << endl;
     plateau_.affichePlateau();
         while (cont){
+            compt ++;
         for (Animal *a : plateau_.getAnimals()){
-            
-                compt ++;
-                cout << "------------------------------------------------------------------------"<< endl;
                 a->deplace(largeur_plateau,longueur_plateau);
                 for (Animal *b : plateau_.getAnimals()){
-                    if (a->getX() == b->getX() && a->getY() == b->getY()){
+                    if (a != b && a->getX() == b->getX() && a->getY() == b->getY()){
                         a->attaque(*b);
                     }
                 }
-                cout << "Partie " << compt << endl;
-                plateau_.affichePlateau();
-                plateau_.afficherNbAnimalEnVie();
-                plateau_.afficheAnimals();
-                cout << "Voulez-vous continuer la partie ? [y/n]" << endl;
+                
+                
+            }
+            cout << "------------------------------------------------------------------------"<< endl;
+            cout << "Partie " << compt << endl;
+            plateau_.affichePlateau();
+            plateau_.afficherNbAnimalEnVie();
+            plateau_.afficheAnimals();
+            cout << "Voulez-vous continuer la partie ? [y/n]" << endl;
                 cin >> b ;
                 if (b=='y'){
                     cont = true;
@@ -108,7 +110,6 @@ void Jeu::partie(int largeur_plateau, int longueur_plateau){
                 else{
                     cont = false;
                 }   
-            }
    
         }
 
