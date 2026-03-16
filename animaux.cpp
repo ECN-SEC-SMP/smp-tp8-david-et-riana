@@ -1,0 +1,280 @@
+/*TODO :
+- expliquer pourquoi avoir choisi d'implémenter un enum
+- expliquer pourquoi avoir ajouter une classe plateau*/
+
+#include <iostream>
+#include "animaux.h"
+
+using namespace std;
+
+// Méthodes de la classe Attaque
+
+Attaque::Attaque(){
+    attaque_ = static_cast<attaque_e> (random()%3);
+}
+
+Attaque::Attaque(int a){
+    attaque_ = static_cast<attaque_e> (a%3);
+}
+
+Attaque::Attaque(attaque_e a) {
+    attaque_ = a;
+}
+
+attaque_e Attaque::getTypeAttaque() const{ //On change le type de retour prck on a implémenté un enum
+    return attaque_; 
+}
+
+bool Attaque::resoudreAttaque(const Attaque &a) const{
+    if (getTypeAttaque() == attaque_e::pierre && a.getTypeAttaque() == attaque_e::ciseaux){
+        return true;
+    }
+    else if (getTypeAttaque() == attaque_e::feuille && a.getTypeAttaque() == attaque_e::pierre){
+        return true;
+    }
+    else if (getTypeAttaque() == attaque_e::ciseaux && a.getTypeAttaque() == attaque_e::feuille){
+        return true;
+    }
+    else if (getTypeAttaque() == a.getTypeAttaque()){
+        return (rand()%2);
+    }
+    else{
+        return false;
+    }
+}
+
+string Attaque::getNomAttaque() const{
+
+}
+
+// Surcharge de l'opérateur <<
+
+ostream& operator<<(ostream &os, const attaque_e &a){
+        switch (a)
+    {
+    case attaque_e::pierre :
+         os << "pierre" ;
+    break;
+
+    case attaque_e::feuille :
+         os << "feuille" ;
+    break;
+
+    case attaque_e::ciseaux :
+         os << "ciseaux" ;
+
+    break;
+
+    default:
+        break;
+    }
+    return os;
+}
+
+/**
+ * Constructeur de la classe Animal
+ * Place l'animal à la position (0, 0) sur le plateau de jeu
+ * @param maxX Taille maximale de l'aire de jeu en x
+ * @param maxY Taille maximale de l'aire de jeu en y
+ */
+Animal::Animal(const int maxX, const int maxY) {
+    vivant_ = true;
+    x_ = 0;
+    y_ = 0;
+    maxX_ = maxX;
+    maxY_ = maxY;
+}
+
+/**
+ * Constructeur de la classe Animal
+ * Place l'animal à la position (a, b) sur le plateau de jeu
+ * @param maxX Taille maximale de l'aire de jeu en x
+ * @param maxY Taille maximale de l'aire de jeu en y
+ * @param a Position en x de l'animal
+ * @param b Position en y de l'animal
+ */
+Animal::Animal(const int maxX, const int maxY, const int a, const int b) {
+    vivant_ = true;
+    x_ = a;
+    y_ = b;
+    maxX_ = maxX;
+    maxY_ = maxY;
+}
+
+string Animal::getNom() const {
+    return nom_;
+}
+
+/**
+  * @brief x représent la position réelle en abscisses de l'animal sur le plateau de jeu
+  * @return x variant entre 0 et maxX - 1
+  */
+int Animal::getX() const {
+    return x_ % maxX_;
+}
+
+/**
+  * @brief y représent la position réelle en ordonnées de l'animal sur le plateau de jeu
+  * @return y variant entre 0 et maxY - 1
+  */
+int Animal::getY() const {
+    return y_ % maxY_;
+}
+
+void Animal::setX(int x) {
+    x_ = x;
+}
+
+void Animal::setY(int y) {
+    y_ = y;
+}
+
+bool Animal::getVivant() const {
+    return vivant_;
+}
+
+Attaque Animal::getAttaque() const {
+    return type_attaque_;
+}
+
+void Animal::setNom(string nom) {
+    nom_ = nom;
+}
+
+void Animal::setVivant(bool v) {
+    vivant_ = v;
+}
+
+/**
+ * @brief Résout l'attaque entre l'animal courant et l'animal attaqué
+ * @param a Animal attaqué
+ * @return true si l'attaque de l'animal courant est gagnante contre l'animal attaqué, false sinon
+ */
+bool Animal::attaque(Animal &a) {
+    if (!getVivant() || !a.getVivant()) {
+        return false; // Un animal mort ne peut pas attaquer ou être attaqué
+    }
+
+    if (getAttaque().resoudreAttaque(a.getAttaque())) {
+        //Attaque est réussi
+        a.setVivant(false);
+        return true;
+    }
+
+    // Attaque a échoué
+    setVivant(false);
+    return false;
+}
+
+ostream& operator<<(ostream &os, const Animal &a){
+    os << a.getNom() << ": (" << a.getX() << ", " << a.getY() << ") " << endl;
+    os << (a.getVivant() ? "vivant" : "mort")                         << endl;
+    os << "attaque : " << a.getAttaque().getTypeAttaque()            << endl;
+    os << "--";
+    return os;
+}
+
+int Pierre::id = 0;
+
+/**
+ * La pierre ne se déplace pas
+ * @param maxX Taille maximale de l'aire de jeu en x
+ * @param maxY Taille maximale de l'aire de jeu en y
+ */
+void Pierre::deplace(int maxX, int maxY) {
+    // La pierre ne se déplace pas
+}
+
+/**
+ * @brief Définit l'attaque de la pierre sur pierre.
+ */
+void Pierre::setAttaque() {
+    type_attaque_ = Attaque(attaque_e::pierre);
+}
+
+string Pierre::getChar() const {
+    return  "🗿";
+}
+
+int Loup::id = 0;
+
+/**
+ * Le loup se déplace de manière aléatoire sur le plateau de jeu
+ * x vaut une valeur aléatoire entre 0 et maxX - 1
+ * y vaut une valeur aléatoire entre 0 et maxY - 1
+ * @param maxX Taille maximale de l'aire de jeu en x
+ * @param maxY Taille maximale de l'aire de jeu en y
+ */
+void Loup::deplace (int maxX, int maxY) {
+    x_ = random()%maxX;
+    y_ = random()%maxY;
+}
+
+/**
+ * @brief Le loup attaque de manière aléatoire pierre, feuille ou ciseaux
+ */
+void Loup::setAttaque() {
+    type_attaque_ = Attaque();
+}
+
+string Loup::getChar() const {
+    return "🐺";
+}
+
+int Lion::id = 0;
+
+/**
+ * Le lion se déplace de manière aléatoire sur le plateau de jeu
+ * x et y sont modifiés de -1 ou 1
+ * TODO: Assurer que la nouvelle position du lion est bien dans les limites du plateau de jeu
+ * @param maxX Taille maximale de l'aire de jeu en x
+ * @param maxY Taille maximale de l'aire de jeu en y
+ */
+void Lion::deplace(int maxX, int maxY) {
+    int positions_possibles[4][2] = {{-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
+    int random_index = random()%4;
+
+    x_ += positions_possibles[random_index][0];
+    y_ += positions_possibles[random_index][1];
+}
+
+/**
+ * @brief Le lion attaque de manière aléatoire feuille ou ciseaux
+ */
+void Lion::setAttaque() {
+    type_attaque_ = Attaque(random()%2 + 1);
+}
+
+string Lion::getChar() const {
+    return "🦁";
+}
+
+int Ours::id = 0;
+
+/**
+ * L'ours se déplace de manière aléatoire sur le plateau de jeu
+ * x et y sont modifiés de -2, -1, 1 ou 2
+ * TODO: Assurer que la nouvelle position de l'ours est bien dans les limites du plateau de jeu
+ * @param maxX Taille maximale de l'aire de jeu en x
+ * @param maxY Taille maximale de l'aire de jeu en y
+ */
+void Ours::deplace(int maxX, int maxY) {
+    int positions_possibles[8][2] = {
+        {-1, -2},{1, -2}, {2, -1}, {2, 1},
+        {1, 2}, {-1, 2}, {-2, 1}, {-2, -1}};
+    int random_index = random()%8;
+
+    x_ += positions_possibles[random_index][0];
+    y_ += positions_possibles[random_index][1];
+}
+
+/**
+ * @brief Définit l'attaque de l'ours sur feuille.
+ */
+void Ours::setAttaque() {
+    type_attaque_ = Attaque(attaque_e::feuille);
+}
+
+string Ours::getChar() const {
+    return "🐻";
+}
